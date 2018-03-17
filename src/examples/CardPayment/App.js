@@ -61,7 +61,7 @@ export default class App extends Component {
   };
 
   handleYearPress = val => {
-    this.setState({ expiryYear: vall });
+    this.setState({ expiryYear: val });
   };
 
   handleCVCPress = val => {
@@ -93,18 +93,18 @@ export default class App extends Component {
             horizontalScroll={false}
           >
             <View>
-              <NumberKeyboard onPress={this.handlerCardNumberPress} />
+              <NumberPad onPress={this.handlerCardNumberPress} />
             </View>
 
             <View>
-              <ExpiryDateKeyboard
+              <MonthYearPad
                 onMonthPress={this.handleMonthPress}
                 onYearPress={this.handleYearPress}
               />
             </View>
 
             <View>
-              <NumberKeyboard onPress={this.handleCVCPress} />
+              <NumberPad onPress={this.handleCVCPress} />
             </View>
           </IndicatorViewPager>
         </View>

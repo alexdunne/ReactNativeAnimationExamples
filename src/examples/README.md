@@ -1,1 +1,3 @@
 This drectory contains all of the animation examples. Each of the directroies will be mostly isolated from the rest of the project - minus the generic components found in the `components` directory.
+
+`index.js` exposes a screen to be used in the apps navigaion and simply wraps the `App.js` in the same directory. This is done to replicate how a react-native app is generally setup i.e. `index.js` imports `App.js` and registers the component with `AppRegistry`. It also done so that I am not tempted to use the `navigation` prop provided by `react-navigation`. Whilst this isn't inherently bad I am attempting to keep example as isolated as possible.

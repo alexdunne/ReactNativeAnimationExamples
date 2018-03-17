@@ -11,19 +11,26 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 16,
-    paddingHorizontal: 32,
+    paddingTop: 20,
+    paddingHorizontal: 28,
     backgroundColor: "#FFFFFF",
     borderRadius: 15
   },
   logoContainer: {
-    flex: 2
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingBottom: 4
+  },
+  logo: {
+    resizeMode: "contain"
   },
   detailsContainer: {
-    flex: 8
+    flex: 8,
+    paddingHorizontal: 4
   },
   detailRow: {
-    marginBottom: 16
+    marginBottom: 24
   },
   label: {
     fontSize: 14,
@@ -125,10 +132,25 @@ class Card extends Component {
             opacity: frontOpacity
           }}
         >
-          <View style={styles.logoContainer} />
+          <View style={styles.logoContainer}>
+            <Image
+              source={require("./images/hsbc.png")}
+              style={[styles.logo, { width: 100, height: 18 }]}
+            />
+
+            <Image
+              source={require("./images/visa.png")}
+              style={[styles.logo, { width: 60, height: 18 }]}
+            />
+          </View>
           <View style={styles.detailsContainer}>
             <View style={styles.detailRow}>
-              <Text style={[styles.label, styles.labelActive]}>
+              <Text
+                style={[
+                  styles.label,
+                  cardNumber.length < 16 ? styles.labelActive : {}
+                ]}
+              >
                 CARD NUMBER
               </Text>
 
@@ -151,8 +173,18 @@ class Card extends Component {
               </View>
             </View>
 
-            <View style={styles.detailRow}>
-              <Text style={styles.label}>EXP DATE</Text>
+            <View>
+              <Text
+                style={[
+                  styles.label,
+                  cardNumber.length >= 16 &&
+                  (!expiryMonth.length || !expiryYear.length)
+                    ? styles.labelActive
+                    : {}
+                ]}
+              >
+                EXP DATE
+              </Text>
               <View style={styles.inputChunk}>
                 <Text
                   style={[
@@ -209,7 +241,7 @@ class Card extends Component {
             />
 
             <View>
-              <Text style={styles.label}>CVC</Text>
+              <Text style={[styles.label, styles.labelActive]}>CVC</Text>
               <View style={styles.inputChunk}>
                 <Text
                   style={[

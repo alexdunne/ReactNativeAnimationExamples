@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   cardContainer: {
-    flex: 3,
+    height: 225,
     marginBottom: 64
   },
   keyboardContainer: {

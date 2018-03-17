@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { StackNavigator } from "react-navigation";
 
 import ExamplesList from "./ExamplesList";
@@ -16,7 +17,19 @@ export default StackNavigator(
     CardPayment: {
       screen: CardPayment,
       navigationOptions: {
-        title: "Card Payment"
+        title: "Checkout",
+        headerTintColor: "#FFFFFF",
+        headerTitleStyle: {
+          textAlign: "center",
+          flex: 1
+        },
+        headerStyle: {
+          backgroundColor: "#EC5E95",
+          borderBottomWidth: 0,
+          elevation: 0
+        },
+        // Workaround for centered headerTitle on android
+        headerRight: <View />
       }
     }
   },

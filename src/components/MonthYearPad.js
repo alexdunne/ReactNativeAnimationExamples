@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -80,17 +81,22 @@ class MonthYearPad extends React.PureComponent {
         <InputGroup
           title="Month"
           groups={monthGroups}
-          onPress={this.props.onPress}
+          onPress={this.props.onMonthPress}
         />
         <InputGroup
           title="Year"
           groups={yearGroups}
-          onPress={this.props.onPress}
+          onPress={this.props.onYearPress}
           isLast
         />
       </View>
     );
   }
 }
+
+MonthYearPad.propTypes = {
+  onMonthPress: PropTypes.func.isRequired,
+  onYearPress: PropTypes.func.isRequired
+};
 
 export default MonthYearPad;

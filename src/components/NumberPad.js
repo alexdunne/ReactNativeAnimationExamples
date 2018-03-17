@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import PropTypes from "prop-types";
 
 const styles = StyleSheet.create({
   container: {
@@ -80,5 +81,9 @@ class NumberPad extends React.PureComponent {
     );
   }
 }
+
+NumberPad.propTypes = {
+  onPress: PropTypes.func.isRequired
+};
 
 export default NumberPad;

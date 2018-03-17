@@ -2,4 +2,4 @@ Animation examples using react-native.
 
 Source: https://github.com/alexdunne/ReactNativeAnimationExamples
 
-For desing and image attribution please see the repository.
+For design and image attribution please see the repository.

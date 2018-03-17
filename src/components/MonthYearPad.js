@@ -57,7 +57,13 @@ const yearGroups = [
   [{ label: "2024", value: "24" }, { label: "2025", value: "25" }]
 ];
 
-const InputGroup = ({ title, groups, onPress, isLast = false }) => (
+const InputGroup = ({
+  title,
+  groups,
+  highlightColour,
+  onPress,
+  isLast = false
+}) => (
   <View style={[styles.inputContainer, !isLast && { marginRight: 64 }]}>
     <Text style={styles.title}>{title.toUpperCase()}</Text>
     <View>
@@ -67,7 +73,7 @@ const InputGroup = ({ title, groups, onPress, isLast = false }) => (
             <TouchableHighlight
               key={index}
               onPress={() => onPress(value)}
-              underlayColor={this.props.highlightColour}
+              underlayColor={highlightColour}
             >
               <Text style={styles.button}>{label}</Text>
             </TouchableHighlight>
@@ -85,11 +91,13 @@ class MonthYearPad extends React.PureComponent {
         <InputGroup
           title="Month"
           groups={monthGroups}
+          highlightColour={this.props.highlightColour}
           onPress={this.props.onMonthPress}
         />
         <InputGroup
           title="Year"
           groups={yearGroups}
+          highlightColour={this.props.highlightColour}
           onPress={this.props.onYearPress}
           isLast
         />

@@ -47,23 +47,24 @@ const inputs = [
   ]
 ];
 
-const Button = ({ label, value, onPress }) => (
+const Button = ({ label, value, highlightColour, onPress }) => (
   <TouchableHighlight
     style={styles.button}
     onPress={() => onPress(value)}
-    underlayColor={this.props.highlightColour}
+    underlayColor={highlightColour}
   >
     <Text style={styles.buttonLabel}>{label}</Text>
   </TouchableHighlight>
 );
 
-const Row = ({ buttons, onPress }) => (
+const Row = ({ buttons, highlightColour, onPress }) => (
   <View style={styles.row}>
     {buttons.map((button, index) => (
       <Button
         key={index}
         label={button.label}
         value={button.value}
+        highlightColour={highlightColour}
         onPress={onPress}
       />
     ))}
@@ -75,7 +76,12 @@ class NumberPad extends React.PureComponent {
     return (
       <View style={styles.container}>
         {inputs.map((buttons, index) => (
-          <Row key={index} buttons={buttons} onPress={this.props.onPress} />
+          <Row
+            key={index}
+            buttons={buttons}
+            highlightColour={this.props.highlightColour}
+            onPress={this.props.onPress}
+          />
         ))}
       </View>
     );

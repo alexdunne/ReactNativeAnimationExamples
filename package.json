@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "android:deploy:alpha": "fastlane android alpha",
-    "android:deploy:beta": "fastlane android beta",
-    "android:deploy:production": "fastlane android production",
+    "android:deploy:alpha": "bundle exec fastlane android alpha",
+    "android:deploy:beta": "bundle exec fastlane android beta",
+    "android:deploy:production": "bundle exec fastlane android production",
     "test": "jest"
   },
   "dependencies": {

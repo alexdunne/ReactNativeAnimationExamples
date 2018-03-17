@@ -1,0 +1,15 @@
+platform :android do
+  lane :alpha do
+    desc "Submit a new Alpha Build to Play Store"
+    gradle(task: 'clean', project_dir: "android/") # Clean the Gradle project
+    gradle(task: "assemble", build_type: "Release", project_dir: "android/") # Build the Release APK
+    supply(track: "alpha", apk: "android/app/build/outputs/apk/app-release.apk") # Deploy to alpha!
+  end
+
+  lane :beta do
+    desc "Submit a new Beta Build to Play Store"
+    gradle(task: 'clean', project_dir: "android/") # Clean the Gradle project
+    gradle(task: "assemble", build_type: "Release", project_dir: "android/") # Build the Release APK
+    supply(track: "beta", apk: "android/app/build/outputs/apk/app-release.apk") # Deploy to alpha!
+  end
+end

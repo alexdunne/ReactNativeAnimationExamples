@@ -1,0 +1,2 @@
+json_key_file "./google-play-android-developer-service-account.json"
+package_name "com.reactnativeanimationexamples"

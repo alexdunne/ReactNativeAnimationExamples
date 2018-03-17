@@ -64,7 +64,11 @@ const InputGroup = ({ title, groups, onPress, isLast = false }) => (
       {groups.map((group, index) => (
         <View key={index} style={styles.group}>
           {group.map(({ label, value }, index) => (
-            <TouchableHighlight key={index} onPress={() => onPress(value)}>
+            <TouchableHighlight
+              key={index}
+              onPress={() => onPress(value)}
+              underlayColor={this.props.highlightColour}
+            >
               <Text style={styles.button}>{label}</Text>
             </TouchableHighlight>
           ))}
@@ -95,6 +99,7 @@ class MonthYearPad extends React.PureComponent {
 }
 
 MonthYearPad.propTypes = {
+  highlightColour: PropTypes.string.isRequired,
   onMonthPress: PropTypes.func.isRequired,
   onYearPress: PropTypes.func.isRequired
 };

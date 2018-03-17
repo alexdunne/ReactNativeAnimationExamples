@@ -132,18 +132,25 @@ export default class App extends Component {
             }}
           >
             <View style={styles.keyboardContainer}>
-              <NumberPad onPress={this.handlerCardNumberPress} />
+              <NumberPad
+                highlightColour="#F47AA9"
+                onPress={this.handlerCardNumberPress}
+              />
             </View>
 
             <View style={styles.keyboardContainer}>
               <MonthYearPad
+                highlightColour="#F47AA9"
                 onMonthPress={this.handleMonthPress}
                 onYearPress={this.handleYearPress}
               />
             </View>
 
             <View style={styles.keyboardContainer}>
-              <NumberPad onPress={this.handleCVCPress} />
+              <NumberPad
+                highlightColour="#F47AA9"
+                onPress={this.handleCVCPress}
+              />
             </View>
 
             {/* Placeholder so we can move up the payment button into an empty space */}

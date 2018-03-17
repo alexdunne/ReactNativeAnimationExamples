@@ -51,7 +51,7 @@ const Button = ({ label, value, onPress }) => (
   <TouchableHighlight
     style={styles.button}
     onPress={() => onPress(value)}
-    underlayColor="#f47aa9"
+    underlayColor={this.props.highlightColour}
   >
     <Text style={styles.buttonLabel}>{label}</Text>
   </TouchableHighlight>
@@ -83,6 +83,7 @@ class NumberPad extends React.PureComponent {
 }
 
 NumberPad.propTypes = {
+  highlightColour: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired
 };
 

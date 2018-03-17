@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Animated } from "react-native";
 import { IndicatorViewPager, PagerDotIndicator } from "rn-viewpager";
 
 import Card from "./Card";
+import PaymentButton from "./PaymentButton";
 import NumberPad from "../../components/NumberPad";
 import MonthYearPad from "../../components/MonthYearPad";
 
@@ -13,16 +14,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 32,
-    paddingHorizontal: 32,
     backgroundColor: "#EC5E95",
     justifyContent: "space-between"
   },
   cardContainer: {
     height: 225,
-    marginBottom: 64
+    marginBottom: 64,
+    paddingHorizontal: 32
+  },
+  pagerContainer: {
+    flex: 4
   },
   keyboardContainer: {
-    flex: 4
+    paddingHorizontal: 32
+  },
+  paymentContainer: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    width: "100%"
   }
 });
 
@@ -34,16 +44,26 @@ export default class App extends Component {
     cvc: ""
   };
 
+  constructor(props) {
+    super(props);
+
+    this.paymentAnimation = new Animated.Value(0);
+  }
+
   componentDidUpdate() {
-    if (
-      this.state.expiryMonth.length !== 0 &&
-      this.state.expiryYear.length !== 0
-    ) {
+    const { cardNumber, expiryMonth, expiryYear, cvc } = this.state;
+
+    if (cvc.length === 3) {
+      this.viewPagerRef.setPage(3);
+      return;
+    }
+
+    if (expiryMonth.length !== 0 && expiryYear.length !== 0) {
       this.viewPagerRef.setPage(2);
       return;
     }
 
-    if (this.state.cardNumber.length === 16) {
+    if (cardNumber.length === 16) {
       this.viewPagerRef.setPage(1);
     }
   }
@@ -75,6 +95,18 @@ export default class App extends Component {
   render() {
     const { cardNumber, expiryMonth, expiryYear, cvc } = this.state;
 
+    const paymentButtonStyles = {
+      transform: [
+        {
+          translateY: this.paymentAnimation.interpolate({
+            inputRange: [0, 1],
+            outputRange: [60, 0],
+            extrapolate: "clamp"
+          })
+        }
+      ]
+    };
+
     return (
       <View style={styles.container}>
         <View style={styles.cardContainer}>
@@ -85,28 +117,42 @@ export default class App extends Component {
             cvc={cvc}
           />
         </View>
-        <View style={styles.keyboardContainer}>
+        <View style={styles.pagerContainer}>
           <IndicatorViewPager
             ref={ref => (this.viewPagerRef = ref)}
             style={styles.flex}
             indicator={<PagerDotIndicator pageCount={3} />}
             horizontalScroll={false}
+            onPageScroll={({ position }) => {
+              Animated.timing(this.paymentAnimation, {
+                duration: 300,
+                toValue: Number(position === 3),
+                useNativeDriver: true
+              }).start();
+            }}
           >
-            <View>
+            <View style={styles.keyboardContainer}>
               <NumberPad onPress={this.handlerCardNumberPress} />
             </View>
 
-            <View>
+            <View style={styles.keyboardContainer}>
               <MonthYearPad
                 onMonthPress={this.handleMonthPress}
                 onYearPress={this.handleYearPress}
               />
             </View>
 
-            <View>
+            <View style={styles.keyboardContainer}>
               <NumberPad onPress={this.handleCVCPress} />
             </View>
+
+            {/* Placeholder so we can move up the payment button into an empty space */}
+            <View />
           </IndicatorViewPager>
+
+          <Animated.View style={[styles.paymentContainer, paymentButtonStyles]}>
+            <PaymentButton />
+          </Animated.View>
         </View>
       </View>
     );

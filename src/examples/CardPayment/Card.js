@@ -69,7 +69,7 @@ class Card extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!prevProps.expiryYear && this.props.expiryYear) {
+    if (this.props.expiryMonth && this.props.expiryYear) {
       Animated.timing(this.animation, {
         toValue: 1,
         duration: 500

@@ -1,9 +1,10 @@
 {
   "name": "ReactNativeAnimationExamples",
   "version": "0.0.1",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
     "android:deploy:alpha": "bundle exec fastlane android alpha",
     "android:deploy:beta": "bundle exec fastlane android beta",
     "android:deploy:production": "bundle exec fastlane android production",

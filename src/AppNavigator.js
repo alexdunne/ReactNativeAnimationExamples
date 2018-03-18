@@ -5,6 +5,7 @@ import { StackNavigator } from "react-navigation";
 import ExamplesList from "./ExamplesList";
 import HeaderLink from "./components/HeaderLink";
 import CardPayment from "./examples/CardPayment";
+import MapLocationChange from "./examples/MapLocationChange";
 
 export default StackNavigator(
   {
@@ -36,6 +37,16 @@ export default StackNavigator(
             url="https://github.com/alexdunne/ReactNativeAnimationExamples/tree/master/src/examples/CardPayment"
           />
         )
+      }
+    },
+    MapLocationChange: {
+      screen: MapLocationChange,
+      navigationOptions: {
+        title: "Map Location Change",
+        headerTintColor: "#FFFFFF",
+        headerStyle: {
+          backgroundColor: "#211f3f"
+        }
       }
     }
   },

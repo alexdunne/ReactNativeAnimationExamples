@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { StackNavigator } from "react-navigation";
 
 import ExamplesList from "./ExamplesList";
+import HeaderLink from "./components/HeaderLink";
 import CardPayment from "./examples/CardPayment";
 
 export default StackNavigator(
@@ -29,7 +30,12 @@ export default StackNavigator(
           elevation: 0
         },
         // Workaround for centered headerTitle on android
-        headerRight: <View />
+        headerRight: (
+          <HeaderLink
+            color="#FFFFFF"
+            url="https://github.com/alexdunne/ReactNativeAnimationExamples/tree/master/src/examples/CardPayment"
+          />
+        )
       }
     }
   },

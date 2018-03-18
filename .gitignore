@@ -53,3 +53,4 @@ fastlane/Preview.html
 fastlane/**/*/images
 
 google-play-android-developer-service-account.json
+.env

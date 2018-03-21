@@ -6,7 +6,8 @@ import {
   View,
   Image,
   Text,
-  Platform
+  Platform,
+  Animated
 } from "react-native";
 import MapView from "react-native-maps";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -19,6 +20,8 @@ const CARD_WIDTH = 250;
 const ACCENT_COLOUR = "#008489";
 
 export default class App extends Component {
+  scrollLocation = new Animated.Value(0);
+
   state = {
     properties: [
       {
@@ -88,8 +91,21 @@ export default class App extends Component {
           ))}
         </MapView>
 
-        <ScrollView
+        <Animated.ScrollView
           horizontal
+          scrollEventThrottle={1}
+          onScroll={Animated.event(
+            [
+              {
+                nativeEvent: {
+                  contentOffset: {
+                    x: this.scrollLocation
+                  }
+                }
+              }
+            ],
+            { useNativeDriver: true }
+          )}
           showsHorizontalScrollIndicator={false}
           snapToInterval={CARD_WIDTH}
           style={{
@@ -185,7 +201,7 @@ export default class App extends Component {
               </View>
             </View>
           ))}
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
     );
   }

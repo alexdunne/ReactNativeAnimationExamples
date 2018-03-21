@@ -42,10 +42,11 @@ export default StackNavigator(
     MapLocationChange: {
       screen: MapLocationChange,
       navigationOptions: {
-        title: "Map Location Change",
         headerTintColor: "#FFFFFF",
         headerStyle: {
-          backgroundColor: "#211f3f"
+          backgroundColor: "transparent",
+          borderBottomWidth: 0,
+          elevation: 0
         }
       }
     }

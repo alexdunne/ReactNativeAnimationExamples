@@ -6,6 +6,10 @@
 
 * Design from: AirBnB map view which changes location when a different property is selected in the scroller
 
+* Images from:
+  * http://www.chicroomproperties.com
+  * https://www.designingbuildings.co.uk
+
 ## Dependencies
 
 ### External

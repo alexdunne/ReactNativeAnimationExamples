@@ -30,7 +30,11 @@ export default class App extends Component {
         rating: 5,
         reviewsCount: 75,
         imageUrl:
-          "http://www.chicroomproperties.com/thumb/property-gallery/items/166/furnished-studio-flat-for-rent-mid-term-in-barcelona-gothic-2.jpg"
+          "http://www.chicroomproperties.com/thumb/property-gallery/items/166/furnished-studio-flat-for-rent-mid-term-in-barcelona-gothic-2.jpg",
+        coords: {
+          latitude: 51.5131,
+          longitude: -0.1221
+        }
       },
       {
         id: 1,
@@ -41,26 +45,48 @@ export default class App extends Component {
         rating: 4,
         reviewsCount: 139,
         imageUrl:
-          "https://www.designingbuildings.co.uk/w/images/a/a8/xStudioflat.jpg.pagespeed.ic.xN613dZkvW.jpg"
+          "https://www.designingbuildings.co.uk/w/images/a/a8/xStudioflat.jpg.pagespeed.ic.xN613dZkvW.jpg",
+        coords: {
+          latitude: 51.5073,
+          longitude: -0.1657
+        }
       }
     ]
   };
 
   render() {
+    const { properties } = this.state;
+
     return (
       // The marginTop here is used to move the map above where the navigation would be
       <View style={{ flex: 1, marginTop: -60 }}>
         <MapView
           style={{ flex: 1 }}
           region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121
+            latitude: 51.5,
+            longitude: -0.15,
+            latitudeDelta: 0.15,
+            longitudeDelta: 0.01
           }}
           loadingEnabled
           showsUserLocation
-        />
+        >
+          {properties.map(property => (
+            <MapView.Marker key={property.id} coordinate={property.coords}>
+              <View
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  height: 30,
+                  width: 45,
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Text>{property.price}</Text>
+              </View>
+            </MapView.Marker>
+          ))}
+        </MapView>
 
         <ScrollView
           horizontal
@@ -80,7 +106,7 @@ export default class App extends Component {
             paddingLeft: 20
           }}
         >
-          {this.state.properties.map((property, index) => (
+          {properties.map((property, index) => (
             <View
               key={property.id}
               style={{ width: CARD_WIDTH, marginHorizontal: 5 }}

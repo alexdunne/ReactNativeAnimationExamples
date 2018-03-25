@@ -7,7 +7,7 @@
     "android": "react-native run-android",
     "android:deploy:alpha": "bundle exec fastlane android alpha",
     "android:deploy:beta": "bundle exec fastlane android beta",
-    "android:deploy:production": "bundle exec fastlane android production",
+    "android:deploy:release": "bundle exec fastlane android production",
     "test": "jest"
   },
   "dependencies": {

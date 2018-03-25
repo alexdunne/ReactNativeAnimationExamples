@@ -20,7 +20,7 @@ const CARD_WIDTH = 250;
 const ACCENT_COLOUR = "#008489";
 
 export default class App extends Component {
-  scrollLocation = new Animated.Value(0);
+  scrollerRef = null;
 
   state = {
     properties: [
@@ -40,7 +40,7 @@ export default class App extends Component {
         }
       },
       {
-        id: 1,
+        id: 2,
         title: "Room with a view in Leicester Square",
         type: "Private room",
         bedCount: 1,
@@ -53,12 +53,56 @@ export default class App extends Component {
           latitude: 51.5073,
           longitude: -0.1657
         }
+      },
+      {
+        id: 3,
+        title: "Something something London",
+        type: "Entire flat",
+        bedCount: 2,
+        price: "£99",
+        rating: 3,
+        reviewsCount: 12,
+        imageUrl:
+          "http://www.chicroomproperties.com/thumb/property-gallery/items/166/furnished-studio-flat-for-rent-mid-term-in-barcelona-gothic-2.jpg",
+        coords: {
+          latitude: 51.5194,
+          longitude: -0.1261
+        }
+      },
+      {
+        id: 4,
+        title: "A shed in the garden",
+        type: "Private room",
+        bedCount: 1,
+        price: "£179",
+        rating: 2,
+        reviewsCount: 255,
+        imageUrl:
+          "http://www.sheds.co.uk/media/extendware/ewimageopt/media/inline/fb/4/hartwood-6-x-4-overlap-reverse-apex-shed-c44.jpg",
+        coords: {
+          latitude: 51.4985,
+          longitude: -0.1617
+        }
       }
-    ]
+    ],
+    selectedProperty: 0
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.scrollerRef &&
+      prevState.selectedProperty !== this.state.selectedProperty
+    ) {
+      this.scrollerRef.scrollTo({
+        x: this.state.selectedProperty * CARD_WIDTH,
+        y: 0,
+        animated: true
+      });
+    }
+  }
+
   render() {
-    const { properties } = this.state;
+    const { properties, selectedProperty } = this.state;
 
     return (
       // The marginTop here is used to move the map above where the navigation would be
@@ -74,40 +118,35 @@ export default class App extends Component {
           loadingEnabled
           showsUserLocation
         >
-          {properties.map(property => (
+          {properties.map((property, index) => (
             <MapView.Marker key={property.id} coordinate={property.coords}>
               <View
                 style={{
-                  backgroundColor: "#FFFFFF",
+                  backgroundColor:
+                    selectedProperty === index ? ACCENT_COLOUR : "#FFFFFF",
                   height: 30,
                   width: 45,
                   justifyContent: "center",
                   alignItems: "center"
                 }}
               >
-                <Text>{property.price}</Text>
+                <Text
+                  style={{
+                    color: selectedProperty === index ? "#FFFFFF" : "#000000"
+                  }}
+                >
+                  {property.price}
+                </Text>
               </View>
             </MapView.Marker>
           ))}
         </MapView>
 
-        <Animated.ScrollView
+        <ScrollView
           horizontal
-          scrollEventThrottle={1}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: this.scrollLocation
-                  }
-                }
-              }
-            ],
-            { useNativeDriver: true }
-          )}
           showsHorizontalScrollIndicator={false}
           snapToInterval={CARD_WIDTH}
+          ref={ref => (this.scrollerRef = ref)}
           style={{
             position: "absolute",
             bottom: 0,
@@ -120,6 +159,13 @@ export default class App extends Component {
           contentContainerStyle={{
             paddingRight: 40,
             paddingLeft: 20
+          }}
+          onMomentumScrollEnd={e => {
+            this.setState({
+              selectedProperty: Math.round(
+                e.nativeEvent.contentOffset.x / CARD_WIDTH
+              )
+            });
           }}
         >
           {properties.map((property, index) => (
@@ -134,6 +180,18 @@ export default class App extends Component {
                 }}
                 source={{ uri: property.imageUrl }}
               />
+              {selectedProperty === index && (
+                <View
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    height: 4,
+                    width: "100%",
+                    backgroundColor: ACCENT_COLOUR
+                  }}
+                />
+              )}
               <View
                 style={{
                   flexDirection: "row",
@@ -201,7 +259,7 @@ export default class App extends Component {
               </View>
             </View>
           ))}
-        </Animated.ScrollView>
+        </ScrollView>
       </View>
     );
   }

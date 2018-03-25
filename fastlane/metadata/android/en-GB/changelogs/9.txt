@@ -1,0 +1,1 @@
+Added Map Location Change example with a source code link

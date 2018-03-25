@@ -47,7 +47,13 @@ export default StackNavigator(
           backgroundColor: "transparent",
           borderBottomWidth: 0,
           elevation: 0
-        }
+        },
+        headerRight: (
+          <HeaderLink
+            color="#008489"
+            url="https://github.com/alexdunne/ReactNativeAnimationExamples/tree/master/src/examples/MapLocationChange"
+          />
+        )
       }
     }
   },

@@ -14,6 +14,10 @@ const ExamplesList = ({ navigation }) => (
         title="Map Location Change"
         onPress={() => navigation.navigate("MapLocationChange")}
       />
+      <ListItem
+        title="Ticket Print"
+        onPress={() => navigation.navigate("TicketPrint")}
+      />
     </List>
   </View>
 );

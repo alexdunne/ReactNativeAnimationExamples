@@ -6,6 +6,7 @@ import ExamplesList from "./ExamplesList";
 import HeaderLink from "./components/HeaderLink";
 import CardPayment from "./examples/CardPayment";
 import MapLocationChange from "./examples/MapLocationChange";
+import TicketPrint from "./examples/TicketPrint";
 
 export default StackNavigator(
   {
@@ -55,6 +56,9 @@ export default StackNavigator(
           />
         )
       }
+    },
+    TicketPrint: {
+      screen: TicketPrint
     }
   },
   {

@@ -15,10 +15,13 @@ const styles = StyleSheet.create({
 
 class TicketPrint extends Component {
   render() {
+    const ticketHeight = 400;
+
     return (
       <View style={styles.container}>
-        <Printer>
+        <Printer ticketHeight={ticketHeight}>
           <Ticket
+            height={ticketHeight}
             ticketNumber={25}
             ticketDate="30/03/18"
             ticketTime="01:07"

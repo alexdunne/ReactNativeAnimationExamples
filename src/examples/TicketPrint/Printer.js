@@ -32,7 +32,7 @@ class Printer extends React.Component {
   componentDidMount() {
     Animated.timing(this.ticketHeight, {
       toValue: this.props.ticketHeight,
-      duration: 1000,
+      duration: 2500,
       useNativeDriver: true
     }).start();
   }

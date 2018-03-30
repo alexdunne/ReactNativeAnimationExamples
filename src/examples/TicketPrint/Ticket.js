@@ -83,6 +83,19 @@ const styles = StyleSheet.create({
   },
   whiteText: {
     color: "#FFFFFF"
+  },
+  ticketNotchContainer: {
+    position: "absolute",
+    bottom: -60,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  ticketNotch: {
+    backgroundColor: "#00B9F1",
+    height: 80,
+    width: 80,
+    borderRadius: 80
   }
 });
 
@@ -175,6 +188,10 @@ const Ticket = ({
           </View>
         </View>
       </TouchableWithoutFeedback>
+    </View>
+
+    <View style={styles.ticketNotchContainer}>
+      <View style={styles.ticketNotch} />
     </View>
   </View>
 );

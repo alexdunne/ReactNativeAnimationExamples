@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import Printer from "./Printer";
+import Ticket from "./Ticket";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +17,15 @@ class TicketPrint extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Printer />
+        <Printer>
+          <Ticket
+            ticketNumber={25}
+            ticketDate="30/03/18"
+            ticketTime="01:07"
+            estimatedWaitTime="12"
+            queuePosition="2"
+          />
+        </Printer>
       </View>
     );
   }

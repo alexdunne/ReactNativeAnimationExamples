@@ -58,7 +58,21 @@ export default StackNavigator(
       }
     },
     TicketPrint: {
-      screen: TicketPrint
+      screen: TicketPrint,
+      navigationOptions: {
+        headerTintColor: "#FFFFFF",
+        headerStyle: {
+          backgroundColor: "#00B9F1",
+          borderBottomWidth: 0,
+          elevation: 0
+        },
+        headerRight: (
+          <HeaderLink
+            color="#FFFFFF"
+            url="https://github.com/alexdunne/ReactNativeAnimationExamples/tree/master/src/examples/TicketPrint"
+          />
+        )
+      }
     }
   },
   {

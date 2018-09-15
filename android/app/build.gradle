@@ -102,8 +102,8 @@ android {
         applicationId "com.reactnativeanimationexamples"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "1.0.11"
+        versionCode 13
+        versionName "1.0.12"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
